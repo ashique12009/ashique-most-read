@@ -152,4 +152,62 @@ class Ashique_Most_Read_Public {
 		}
 	}
 
+	/**
+	 * Adding shortcode
+	 */
+	public function ashique_most_read_add_shortcode_for_posts() {
+		add_shortcode('show_most_read_posts', [$this, 'ashique_make_query_and_show_posts']);
+	}
+
+	/**
+	 * Shortcode output
+	 */
+	public function ashique_make_query_and_show_posts() {
+		global $wpdb;
+
+		$table_name = $wpdb->prefix . 'ashique_most_read_posts';
+
+		$results = $wpdb->get_results("
+			SELECT post_id, SUM(read_counter) as read_counter  
+			FROM $table_name 
+			WHERE 
+			read_date >= DATE(NOW() - INTERVAL 7 DAY)  
+			GROUP BY post_id 
+			ORDER BY read_counter DESC 
+			LIMIT 4"
+		);
+
+		$html = "<ul>";
+		if ($results) {
+			foreach ($results as $result) {
+				$html .= '<li><a href="'.get_permalink($result->post_id).'">'.get_the_title($result->post_id).'</a> ('.$result->read_counter.')</li>';
+			}
+		}
+		$html .= "</ul>";
+
+		return $html;
+	}
+
+	/**
+	 * Set results in transient that develoeper can get result by get_transient in any template
+	 */
+	public function ashique_most_read_set_results_in_transient()
+	{
+		global $wpdb;
+
+		$table_name = $wpdb->prefix . 'ashique_most_read_posts';
+
+		$results = $wpdb->get_results("
+			SELECT post_id, SUM(read_counter) as read_counter  
+			FROM $table_name 
+			WHERE 
+			read_date >= DATE(NOW() - INTERVAL 7 DAY)  
+			GROUP BY post_id 
+			ORDER BY read_counter DESC 
+			LIMIT 4"
+		);
+
+		set_transient('most_read_posts', $results);
+	}
+
 }

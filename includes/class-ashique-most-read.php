@@ -174,6 +174,8 @@ class Ashique_Most_Read {
 		$this->loader->add_action( 'wp_enqueue_scripts', $plugin_public, 'enqueue_scripts' );
 
 		$this->loader->add_action( 'wp_head', $plugin_public, 'ashique_most_read_track_post_views' );
+		$this->loader->add_action('init', $plugin_public, 'ashique_most_read_add_shortcode_for_posts');
+		$this->loader->add_action('init', $plugin_public, 'ashique_most_read_set_results_in_transient');
 
 	}
 
