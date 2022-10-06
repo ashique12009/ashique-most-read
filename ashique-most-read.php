@@ -13,7 +13,7 @@
  * @package           Ashique_Most_Read
  *
  * @wordpress-plugin
- * Plugin Name:       Most read post in X Days
+ * Plugin Name:       Most read posts in X Days
  * Plugin URI:        https://https://ashique12009.blogspot.com/
  * Description:       Show most read posts depends on your settings
  * Version:           1.0.0

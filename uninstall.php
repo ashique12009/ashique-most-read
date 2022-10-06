@@ -29,3 +29,15 @@
 if ( ! defined( 'WP_UNINSTALL_PLUGIN' ) ) {
 	exit;
 }
+
+function ashique_drop_most_read_db_table() {
+	global $wpdb;
+	
+	$table_name = $wpdb->prefix . 'ashique_most_read_posts';
+
+	$table_sql = "DROP TABLE $table_name";
+
+	$wpdb->query($table_sql);
+}
+
+ashique_drop_most_read_db_table();
