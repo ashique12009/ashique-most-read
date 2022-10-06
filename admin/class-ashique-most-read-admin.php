@@ -100,4 +100,28 @@ class Ashique_Most_Read_Admin {
 
 	}
 
+	/**
+	 * Set settings menu
+	 */
+	public function ashique_admin_settings_option_menu() {
+		$page_title = 'Most read posts settings';
+		$menu_title = 'Most read posts settings';
+		$capability = 'manage_options';
+		$menu_slug = 'most-read-posts-settings';
+		add_options_page(
+			$page_title,
+			$menu_title,
+			$capability,
+			$menu_slug,
+			[$this, 'ashique_admin_settings_page_display']
+		);
+	}
+
+	/**
+	 * Admin settings page display
+	 */
+	public function ashique_admin_settings_page_display() {
+		include 'partials/ashique-most-read-admin-settings-page.php';
+	}
+
 }
