@@ -100,4 +100,56 @@ class Ashique_Most_Read_Public {
 
 	}
 
+	/**
+	 * Store post counter during user visits in post single page
+	 */
+	public function ashique_most_read_track_post_views($post_id) {
+		if (!is_single()) {
+			return;
+		}
+		if (empty($post_id)) {
+			global $post;
+			$post_id = $post->ID;
+		}
+
+		$this->ashique_most_read_set_post_views($post_id);
+	}
+
+	/**
+	 * Store read counter into DB table
+	 * @param int $post_id
+	 * @return void
+	 */
+	public function ashique_most_read_set_post_views($post_id) {
+		global $wpdb;
+
+		$table_name = $wpdb->prefix . 'ashique_most_read_posts';
+
+		$today_date = date('Y-m-d', time());
+
+		// Get last read counter of today's date
+		$result = $wpdb->get_results("SELECT * FROM $table_name WHERE read_date='$today_date' AND post_id=" . $post_id, OBJECT);
+
+		if (count($result) > 0) { // Update counter as today date found
+			$data = [
+				'read_counter' => $result[0]->read_counter+1
+			];
+			$where = [
+				'read_date' => $today_date,
+				'post_id' => $post_id
+			];
+			
+			$wpdb->update($table_name, $data, $where);
+		}
+		else { // Insert as new entry for this date and for this post
+			$data = [
+				'post_id' => $post_id,
+				'read_counter' => 1,
+				'read_date' => date('Y-m-d', time())
+			];
+
+			$wpdb->insert($table_name, $data);
+		}
+	}
+
 }

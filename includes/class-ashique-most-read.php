@@ -173,6 +173,8 @@ class Ashique_Most_Read {
 		$this->loader->add_action( 'wp_enqueue_scripts', $plugin_public, 'enqueue_styles' );
 		$this->loader->add_action( 'wp_enqueue_scripts', $plugin_public, 'enqueue_scripts' );
 
+		$this->loader->add_action( 'wp_head', $plugin_public, 'ashique_most_read_track_post_views' );
+
 	}
 
 	/**
