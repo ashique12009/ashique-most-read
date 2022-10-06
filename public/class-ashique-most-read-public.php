@@ -191,8 +191,7 @@ class Ashique_Most_Read_Public {
 	/**
 	 * Set results in transient that develoeper can get result by get_transient in any template
 	 */
-	public function ashique_most_read_set_results_in_transient()
-	{
+	public function ashique_most_read_set_results_in_transient() {
 		global $wpdb;
 
 		$table_name = $wpdb->prefix . 'ashique_most_read_posts';
