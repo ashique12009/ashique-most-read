@@ -168,18 +168,20 @@ class Ashique_Most_Read_Public {
 		$table_name = $wpdb->prefix . 'ashique_most_read_posts';
 
 		// How many posts to show
-		$most_read_post_number = get_option( 'most_read_post_number', 4 );
-		$most_read_days_number = get_option( 'most_read_days_number', 7 );
+		$most_read_post_number = (int) get_option( 'most_read_post_number', 4 );
+		$most_read_days_number = (int) get_option( 'most_read_days_number', 7 );
 
-		$results = $wpdb->get_results("
-			SELECT post_id, SUM(read_counter) as read_counter  
-			FROM $table_name 
-			WHERE 
-			read_date >= DATE(NOW() - INTERVAL $most_read_days_number DAY)  
-			GROUP BY post_id 
-			ORDER BY read_counter DESC 
-			LIMIT $most_read_post_number"
-		);
+		$table_sql = "SELECT post_id, SUM(read_counter) as read_counter  
+				FROM $table_name 
+				WHERE 
+				read_date >= DATE(NOW() - INTERVAL %d DAY)  
+				GROUP BY post_id 
+				ORDER BY read_counter DESC 
+				LIMIT %d";
+
+		$sql = $wpdb->prepare($table_sql, $most_read_days_number, $most_read_post_number);
+
+		$results = $wpdb->get_results($sql);
 
 		$html = "<ul>";
 		if ($results) {
@@ -204,15 +206,17 @@ class Ashique_Most_Read_Public {
 		$most_read_post_number = get_option( 'most_read_post_number', 4 );
 		$most_read_days_number = get_option( 'most_read_days_number', 7 );
 
-		$results = $wpdb->get_results("
-			SELECT post_id, SUM(read_counter) as read_counter  
-			FROM $table_name 
-			WHERE 
-			read_date >= DATE(NOW() - INTERVAL $most_read_days_number DAY)  
-			GROUP BY post_id 
-			ORDER BY read_counter DESC 
-			LIMIT $most_read_post_number"
-		);
+		$table_sql = "SELECT post_id, SUM(read_counter) as read_counter  
+				FROM $table_name 
+				WHERE 
+				read_date >= DATE(NOW() - INTERVAL %d DAY)  
+				GROUP BY post_id 
+				ORDER BY read_counter DESC 
+				LIMIT %d";
+
+		$sql = $wpdb->prepare($table_sql, $most_read_days_number, $most_read_post_number);
+
+		$results = $wpdb->get_results($sql);
 
 		set_transient('most_read_posts', $results);
 	}
