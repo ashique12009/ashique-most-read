@@ -73,7 +73,7 @@ class Ashique_Most_Read_Public {
 		 * class.
 		 */
 
-		wp_enqueue_style( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'css/ashique-most-read-public.css', array(), $this->version, 'all' );
+		wp_enqueue_style( $this->plugin_name, ASHIQUE_MOST_READ_PLUGIN_URL . 'css/ashique-most-read-public.css', array(), $this->version, 'all' );
 
 	}
 
@@ -96,7 +96,7 @@ class Ashique_Most_Read_Public {
 		 * class.
 		 */
 
-		wp_enqueue_script( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'js/ashique-most-read-public.js', array( 'jquery' ), $this->version, false );
+		wp_enqueue_script( $this->plugin_name, ASHIQUE_MOST_READ_PLUGIN_URL . 'js/ashique-most-read-public.js', array( 'jquery' ), $this->version, false );
 
 	}
 

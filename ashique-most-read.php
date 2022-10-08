@@ -37,12 +37,15 @@ if ( ! defined( 'WPINC' ) ) {
  */
 define( 'ASHIQUE_MOST_READ_VERSION', '1.0.0' );
 
+define( 'ASHIQUE_MOST_READ_PLUGIN_DIR', plugin_dir_path( __FILE__ ) );
+define( 'ASHIQUE_MOST_READ_PLUGIN_URL', plugin_dir_url( __FILE__ ) );
+
 /**
  * The code that runs during plugin activation.
  * This action is documented in includes/class-ashique-most-read-activator.php
  */
 function activate_ashique_most_read() {
-	require_once plugin_dir_path( __FILE__ ) . 'includes/class-ashique-most-read-activator.php';
+	require_once ASHIQUE_MOST_READ_PLUGIN_DIR . 'includes/class-ashique-most-read-activator.php';
 	Ashique_Most_Read_Activator::activate();
 }
 
@@ -51,7 +54,7 @@ function activate_ashique_most_read() {
  * This action is documented in includes/class-ashique-most-read-deactivator.php
  */
 function deactivate_ashique_most_read() {
-	require_once plugin_dir_path( __FILE__ ) . 'includes/class-ashique-most-read-deactivator.php';
+	require_once ASHIQUE_MOST_READ_PLUGIN_DIR . 'includes/class-ashique-most-read-deactivator.php';
 	Ashique_Most_Read_Deactivator::deactivate();
 }
 
@@ -62,7 +65,7 @@ register_deactivation_hook( __FILE__, 'deactivate_ashique_most_read' );
  * The core plugin class that is used to define internationalization,
  * admin-specific hooks, and public-facing site hooks.
  */
-require plugin_dir_path( __FILE__ ) . 'includes/class-ashique-most-read.php';
+require ASHIQUE_MOST_READ_PLUGIN_DIR . 'includes/class-ashique-most-read.php';
 
 /**
  * Begins execution of the plugin.

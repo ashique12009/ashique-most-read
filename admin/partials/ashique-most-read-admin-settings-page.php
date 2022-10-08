@@ -10,10 +10,10 @@ if (!defined('ABSPATH')) {
             die('Something went wrong!');
         }
         elseif ($_POST['ashique_most_read_post_post_number'] < 1) {
-            die('Set at least 1 to post number');
+            header('Location: ' . admin_url( 'options-general.php?page=most-read-posts-settings&error=1' ));
         }
         elseif ($_POST['ashique_most_read_post_days_number'] < 1) {
-            die('Set at least 1 to days number');
+            header('Location: ' . admin_url( 'options-general.php?page=most-read-posts-settings&error=2' ));
         }
         else {
             update_option( 'most_read_post_number', $_POST['ashique_most_read_post_post_number'] );
@@ -30,7 +30,7 @@ if (!defined('ABSPATH')) {
         <table class="form-table">
             <tbody>
                 <tr>
-                    <th scope="row"><label for="ashique-most-read-post-post-number">How many posts you want to show: </label></th>
+                    <th scope="row"><label for="ashique-most-read-post-post-number"><?php _e( 'How many posts you want to show', 'ashique-most-read' ); ?>: </label></th>
                     <td>
                         <input type="number" id="ashique-most-read-post-post-number" name="ashique_most_read_post_post_number" class="regular-text" value="<?php echo get_option( 'most_read_post_number', 4 );?>">
                     </td>
@@ -38,7 +38,7 @@ if (!defined('ABSPATH')) {
             </tbody>
             <tbody>
                 <tr>
-                    <th scope="row"><label for="ashique-most-read-post-days-number">How many days interval you want to see: </label></th>
+                    <th scope="row"><label for="ashique-most-read-post-days-number"><?php _e( 'How many days interval you want to see', 'ashique-most-read' ); ?>: </label></th>
                     <td>
                         <input type="number" id="ashique-most-read-post-days-number" name="ashique_most_read_post_days_number" class="regular-text" value="<?php echo get_option( 'most_read_days_number', 7 );?>">
                     </td>

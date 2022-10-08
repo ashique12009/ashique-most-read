@@ -73,7 +73,7 @@ class Ashique_Most_Read_Admin {
 		 * class.
 		 */
 
-		wp_enqueue_style( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'css/ashique-most-read-admin.css', array(), $this->version, 'all' );
+		wp_enqueue_style( $this->plugin_name, ASHIQUE_MOST_READ_PLUGIN_URL . 'css/ashique-most-read-admin.css', array(), $this->version, 'all' );
 
 	}
 
@@ -96,7 +96,7 @@ class Ashique_Most_Read_Admin {
 		 * class.
 		 */
 
-		wp_enqueue_script( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'js/ashique-most-read-admin.js', array( 'jquery' ), $this->version, false );
+		wp_enqueue_script( $this->plugin_name, ASHIQUE_MOST_READ_PLUGIN_URL . 'js/ashique-most-read-admin.js', array( 'jquery' ), $this->version, false );
 
 	}
 
@@ -122,6 +122,31 @@ class Ashique_Most_Read_Admin {
 	 */
 	public function ashique_admin_settings_page_display() {
 		include 'partials/ashique-most-read-admin-settings-page.php';
+	}
+
+	/**
+	 * Show admin notice for settings success or error
+	 */
+	public function ashique_admin_notice_for_settings() {
+
+		$screen = get_current_screen();
+
+		if ($screen->id === 'settings_page_most-read-posts-settings') {
+			if ($_GET['error'] == 1) {
+				?>
+				<div class="notice notice-error is-dismissible">
+					<p><?php _e( 'Set at least 1 to post number!', 'ashique-most-read' ); ?></p>
+				</div>
+				<?php 
+			}
+			elseif ($_GET['error'] == 2) {
+				?>
+				<div class="notice notice-error is-dismissible">
+					<p><?php _e( 'Set at least 1 to days number!', 'ashique-most-read' ); ?></p>
+				</div>
+				<?php 
+			}
+		}
 	}
 
 }
