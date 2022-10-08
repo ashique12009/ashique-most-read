@@ -132,21 +132,22 @@ class Ashique_Most_Read_Admin {
 		$screen = get_current_screen();
 
 		if ($screen->id === 'settings_page_most-read-posts-settings') {
-			if ($_GET['error'] === '1') {
+			$error = ( isset( $_GET['error'] ) ) ? sanitize_text_field( $_GET['error'] ) : '';
+			if ($error === '1') {
 				?>
 				<div class="notice notice-error is-dismissible">
 					<p><?php _e( 'Set at least 1 to post number!', 'ashique-most-read' ); ?></p>
 				</div>
 				<?php 
 			}
-			elseif ($_GET['error'] === '2') {
+			elseif ($error === '2') {
 				?>
 				<div class="notice notice-error is-dismissible">
 					<p><?php _e( 'Set at least 1 to days number!', 'ashique-most-read' ); ?></p>
 				</div>
 				<?php 
 			}
-			elseif ($_GET['error'] === '3') {
+			elseif ($error === '3') {
 				?>
 				<div class="notice notice-success is-dismissible">
 					<p><?php _e( 'Settings saved!', 'ashique-most-read' ); ?></p>
