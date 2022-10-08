@@ -14,11 +14,11 @@
  *
  * @wordpress-plugin
  * Plugin Name:       Most read posts in X Days
- * Plugin URI:        https://https://ashique12009.blogspot.com/
+ * Plugin URI:        https://github.com/ashique12009
  * Description:       Show most read posts depends on your settings
  * Version:           1.0.0
  * Author:            khandoker Ashique Mahamud
- * Author URI:        https://https://ashique12009.blogspot.com/
+ * Author URI:        https://ashique12009.blogspot.com/
  * License:           GPL-2.0+
  * License URI:       http://www.gnu.org/licenses/gpl-2.0.txt
  * Text Domain:       ashique-most-read
