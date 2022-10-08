@@ -18,6 +18,7 @@ if (!defined('ABSPATH')) {
         else {
             update_option( 'most_read_post_number', $_POST['ashique_most_read_post_post_number'] );
             update_option( 'most_read_days_number', $_POST['ashique_most_read_post_days_number'] );
+            header('Location: ' . admin_url( 'options-general.php?page=most-read-posts-settings&error=3' ));
         }
     }
 
