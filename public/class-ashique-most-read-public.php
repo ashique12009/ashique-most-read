@@ -183,7 +183,7 @@ class Ashique_Most_Read_Public {
 
 		$results = $wpdb->get_results($sql);
 
-		$html = "<ul>";
+		$html = "<ul class='ashique-most-read-posts-list'>";
 		if ($results) {
 			foreach ($results as $result) {
 				$html .= '<li><a href="'.get_permalink($result->post_id).'">'.get_the_title($result->post_id).'</a> ('.$result->read_counter.')</li>';
