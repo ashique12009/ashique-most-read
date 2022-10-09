@@ -23,6 +23,9 @@
 .ashique-most-read-posts-list-wrapper .ashique-custom-card .ashique-card-content{
     padding: 15px;
 }
+.ashique-most-read-posts-list-wrapper .ashique-custom-card .ashique-card-content a.anchor{
+    text-decoration: none;
+}
 .ashique-most-read-posts-list-wrapper .ashique-custom-card .ashique-card-content a.anchor h3.post-title{
     font-size: 14px;
     color: #000;
