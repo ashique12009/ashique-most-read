@@ -2,3 +2,32 @@
  * All of the CSS for your public-facing functionality should be
  * included in this file.
  */
+.ashique-most-read-posts-list-wrapper{
+    float: left;
+    width: 100%;
+}
+.ashique-most-read-posts-list-wrapper .ashique-custom-card{
+    float: left;
+    width: 20%;
+    border: 1px solid #888;
+    margin: 0 2%;
+}
+.ashique-most-read-posts-list-wrapper .ashique-custom-card .ahique-card-feaured-image-container .ashique-image-anchor{
+    display: block;
+}
+.ashique-most-read-posts-list-wrapper .ashique-custom-card .ahique-card-feaured-image-container .ashique-image-anchor .ashique-img{
+    object-fit: cover;
+    object-position: center;
+    width: 100%;
+}
+.ashique-most-read-posts-list-wrapper .ashique-custom-card .ashique-card-content{
+    padding: 15px;
+}
+.ashique-most-read-posts-list-wrapper .ashique-custom-card .ashique-card-content a.anchor h3.post-title{
+    font-size: 14px;
+    color: #000;
+}
+.ashique-most-read-posts-list-wrapper .ashique-custom-card .ashique-card-content .ashique-read-more{
+    color: #000;
+    text-decoration: none;
+}

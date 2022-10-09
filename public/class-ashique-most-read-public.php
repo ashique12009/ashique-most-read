@@ -73,7 +73,7 @@ class Ashique_Most_Read_Public {
 		 * class.
 		 */
 
-		wp_enqueue_style( $this->plugin_name, ASHIQUE_MOST_READ_PLUGIN_URL . 'css/ashique-most-read-public.css', array(), $this->version, 'all' );
+		wp_enqueue_style( $this->plugin_name, ASHIQUE_MOST_READ_PLUGIN_URL . 'public/css/ashique-most-read-public.css', array(), $this->version, 'all' );
 
 	}
 
@@ -96,7 +96,7 @@ class Ashique_Most_Read_Public {
 		 * class.
 		 */
 
-		wp_enqueue_script( $this->plugin_name, ASHIQUE_MOST_READ_PLUGIN_URL . 'js/ashique-most-read-public.js', array( 'jquery' ), $this->version, false );
+		wp_enqueue_script( $this->plugin_name, ASHIQUE_MOST_READ_PLUGIN_URL . 'public/js/ashique-most-read-public.js', array( 'jquery' ), $this->version, false );
 
 	}
 
@@ -183,13 +183,35 @@ class Ashique_Most_Read_Public {
 
 		$results = $wpdb->get_results($sql);
 
-		$html = "<ul class='ashique-most-read-posts-list'>";
+		$html = "<div class='ashique-most-read-posts-list-wrapper'>";
 		if ($results) {
 			foreach ($results as $result) {
-				$html .= '<li><a href="'.get_permalink($result->post_id).'">'.get_the_title($result->post_id).'</a> ('.$result->read_counter.')</li>';
+				// $html .= '<li><a href="'.get_permalink($result->post_id).'">'.get_the_title($result->post_id).'</a> ('.$result->read_counter.')</li>';
+				$title = get_the_title( $result->post_id );
+				$post_link = get_the_permalink( $result->post_id );
+				$post_content = $this->ashique_most_read_get_excerpt( 80, get_the_content( $result->post_id ) );
+				$post_date = get_the_date( 'F d, Y', $result->post_id );
+				$default_image_url = ASHIQUE_MOST_READ_PLUGIN_URL . 'public/images/default-image.png';
+				$post_thumbnail_url = get_the_post_thumbnail_url( $result->post_id, 'medium' ) ? get_the_post_thumbnail_url( $result->post_id, 'medium' ) : $default_image_url;
+
+				$html .= '<div class="ashique-custom-card sub-article">';
+                	$html .= '<div class="ahique-card-feaured-image-container card-image card-feature-img trending-posts-img">';
+                    	$html .= '<a class="ashique-image-anchor" href="' . $post_link . '">';
+                      		$html .= '<img src="' . $post_thumbnail_url . '" alt="article image" class="ashique-img img-fluid wp-post-image">';
+                    	$html .= '</a>';
+                  	$html .= '</div>';
+                	$html .= '<div class="ashique-card-content card-content">';
+                	$html .= '<a class="anchor" href="' . $post_link . '">';
+                		$html .= '<h3 class="post-title fw-bold mb-2">' . $title . '</h3>';
+            		$html .= '</a>';
+                	$html .= '<div class="date-block">' . $post_date . '</div>';
+                		$html .= '<p class="sub-article-length">' . $post_content . '</p>';
+                		$html .= '<a class="ashique-read-more" href="' . $post_link . '">Read More</a>';
+                	$html .= '</div>';
+                $html .= '</div>'; 
 			}
 		}
-		$html .= "</ul>";
+		$html .= "</div>";
 
 		return $html;
 	}
@@ -220,5 +242,19 @@ class Ashique_Most_Read_Public {
 
 		set_transient('most_read_posts', $results);
 	}
+	
+	/**
+	 * Get excerpt
+	 */
+	public function ashique_most_read_get_excerpt($limit, $source = null) {
+		$excerpt = $source == "content" ? get_the_content() : get_the_excerpt();
+		$excerpt = preg_replace(" (\[.*?\])", '', $excerpt);
+		$excerpt = strip_shortcodes($excerpt);
+		$excerpt = strip_tags($excerpt);
+		$excerpt = substr($excerpt, 0, $limit);
+		$excerpt = substr($excerpt, 0, strripos($excerpt, " "));
+		$excerpt = trim(preg_replace('/\s+/', ' ', $excerpt)) . '...';
+		return $excerpt;
+  	}
 
 }
