@@ -194,19 +194,19 @@ class Ashique_Most_Read_Public {
 				$post_thumbnail_url = get_the_post_thumbnail_url( $result->post_id, 'medium' ) ? get_the_post_thumbnail_url( $result->post_id, 'medium' ) : $default_image_url;
 
 				$html .= '<div class="ashique-custom-card sub-article">';
-                	$html .= '<div class="ahique-card-feaured-image-container card-image card-feature-img trending-posts-img">';
-                    	$html .= '<a class="ashique-image-anchor" href="' . $post_link . '">';
-                      		$html .= '<img src="' . $post_thumbnail_url . '" alt="article image" class="ashique-img img-fluid wp-post-image">';
-                    	$html .= '</a>';
-                  	$html .= '</div>';
-                	$html .= '<div class="ashique-card-content card-content">';
-                	$html .= '<a class="anchor" href="' . $post_link . '">';
-                		$html .= '<h3 class="post-title fw-bold mb-2">' . $title . '</h3>';
-            		$html .= '</a>';
-                	$html .= '<div class="date-block">' . $post_date . '</div>';
-                		$html .= '<p class="sub-article-length">' . $post_content . '</p>';
-                		$html .= '<a class="ashique-read-more" href="' . $post_link . '">Read More</a>';
-                	$html .= '</div>';
+                $html .= '<div class="ahique-card-feaured-image-container card-image card-feature-img trending-posts-img">';
+                $html .= '<a class="ashique-image-anchor" href="' . $post_link . '">';
+                $html .= '<img src="' . $post_thumbnail_url . '" alt="article image" class="ashique-img img-fluid wp-post-image">';
+                $html .= '</a>';
+                $html .= '</div>';
+                $html .= '<div class="ashique-card-content card-content">';
+                $html .= '<a class="anchor" href="' . $post_link . '">';
+                $html .= '<h3 class="post-title fw-bold mb-2">' . $title . '</h3>';
+            	$html .= '</a>';
+                $html .= '<div class="date-block">' . $post_date . '</div>';
+                $html .= '<p class="sub-article-length">' . $post_content . '</p>';
+                $html .= '<a class="ashique-read-more" href="' . $post_link . '">Read More</a>';
+                $html .= '</div>';
                 $html .= '</div>'; 
 			}
 		}
