@@ -171,7 +171,7 @@ class Ashique_Most_Read_Public {
 		$most_read_post_number = (int) get_option( 'most_read_post_number', 4 );
 		$most_read_days_number = (int) get_option( 'most_read_days_number', 7 );
 
-		$table_sql = "SELECT post_id, SUM(read_counter) as read_counter  
+		$table_sql = "SELECT post_id, MAX(read_date) as read_date, SUM(read_counter) as read_counter  
 				FROM $table_name 
 				WHERE 
 				read_date >= DATE(NOW() - INTERVAL %d DAY)  
@@ -186,7 +186,6 @@ class Ashique_Most_Read_Public {
 		$html = "<div class='ashique-most-read-posts-list-wrapper'>";
 		if ($results) {
 			foreach ($results as $result) {
-				// $html .= '<li><a href="'.get_permalink($result->post_id).'">'.get_the_title($result->post_id).'</a> ('.$result->read_counter.')</li>';
 				$title = get_the_title( $result->post_id );
 				$post_link = get_the_permalink( $result->post_id );
 				$post_content = $this->ashique_most_read_get_excerpt( 80, get_the_content( $result->post_id ) );
@@ -228,7 +227,7 @@ class Ashique_Most_Read_Public {
 		$most_read_post_number = get_option( 'most_read_post_number', 4 );
 		$most_read_days_number = get_option( 'most_read_days_number', 7 );
 
-		$table_sql = "SELECT post_id, SUM(read_counter) as read_counter  
+		$table_sql = "SELECT post_id, MAX(read_date) as read_date, SUM(read_counter) as read_counter  
 				FROM $table_name 
 				WHERE 
 				read_date >= DATE(NOW() - INTERVAL %d DAY)  

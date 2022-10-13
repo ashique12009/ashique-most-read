@@ -33,7 +33,7 @@ if (!defined('ABSPATH')) {
                 <tr>
                     <th scope="row"><label for="ashique-most-read-post-post-number"><?php _e( 'How many posts you want to show', 'ashique-most-read' ); ?>: </label></th>
                     <td>
-                        <input type="number" id="ashique-most-read-post-post-number" name="ashique_most_read_post_post_number" class="regular-text" value="<?php echo get_option( 'most_read_post_number', 4 );?>">
+                        <input type="number" id="ashique-most-read-post-post-number" name="ashique_most_read_post_post_number" class="regular-text" value="<?php echo esc_html( get_option( 'most_read_post_number', 4 ) ) ;?>">
                     </td>
                 </tr>
             </tbody>
@@ -41,7 +41,7 @@ if (!defined('ABSPATH')) {
                 <tr>
                     <th scope="row"><label for="ashique-most-read-post-days-number"><?php _e( 'How many days interval you want to see', 'ashique-most-read' ); ?>: </label></th>
                     <td>
-                        <input type="number" id="ashique-most-read-post-days-number" name="ashique_most_read_post_days_number" class="regular-text" value="<?php echo get_option( 'most_read_days_number', 7 );?>">
+                        <input type="number" id="ashique-most-read-post-days-number" name="ashique_most_read_post_days_number" class="regular-text" value="<?php echo esc_html( get_option( 'most_read_days_number', 7 ) ) ;?>">
                     </td>
                 </tr>
             </tbody>
