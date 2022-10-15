@@ -27,18 +27,10 @@ More from settings, you can set how many days interval you need to see your post
 
 == Frequently Asked Questions ==
 
-= A question that someone might have =
-
-An answer to that question.
-
-= What about foo bar? =
-
-Answer to foo bar dilemma.
-
 == Screenshots ==
 
-1. This screen shot description corresponds to screenshot-1.(png|jpg|jpeg|gif). Screenshots are stored in the /assets directory.
-2. This is the second screen shot
+1. this is screenshot 1
+2. this is screenshot 2
 
 == Changelog ==
 
