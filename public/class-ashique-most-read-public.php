@@ -188,7 +188,7 @@ class Ashique_Most_Read_Public {
 			foreach ($results as $result) {
 				$title = get_the_title( $result->post_id );
 				$post_link = get_the_permalink( $result->post_id );
-				$post_content = $this->ashique_most_read_get_excerpt( 80, get_the_content( $result->post_id ) );
+				$post_content = $this->ashique_most_read_get_excerpt( 80, get_the_content( $result->post_id ), $result->post_id );
 				$post_date = get_the_date( 'F d, Y', $result->post_id );
 				$default_image_url = ASHIQUE_MOST_READ_PLUGIN_URL . 'public/images/default-image.png';
 				$post_thumbnail_url = get_the_post_thumbnail_url( $result->post_id, 'medium' ) ? get_the_post_thumbnail_url( $result->post_id, 'medium' ) : $default_image_url;
@@ -245,8 +245,8 @@ class Ashique_Most_Read_Public {
 	/**
 	 * Get excerpt
 	 */
-	public function ashique_most_read_get_excerpt($limit, $source = null) {
-		$excerpt = $source == "content" ? get_the_content() : get_the_excerpt();
+	public function ashique_most_read_get_excerpt($limit, $source = null, $post_id) {
+		$excerpt = $source == "content" ? get_the_content($post_id) : get_the_excerpt($post_id);
 		$excerpt = preg_replace(" (\[.*?\])", '', $excerpt);
 		$excerpt = strip_shortcodes($excerpt);
 		$excerpt = strip_tags($excerpt);
