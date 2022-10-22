@@ -39,6 +39,7 @@ define( 'ASHIQUE_MOST_READ_VERSION', '1.0.0' );
 
 define( 'ASHIQUE_MOST_READ_PLUGIN_DIR', plugin_dir_path( __FILE__ ) );
 define( 'ASHIQUE_MOST_READ_PLUGIN_URL', plugin_dir_url( __FILE__ ) );
+define( 'ASHIQUE_MOST_READ_POST_TEXTDOMAIN', 'ashique-most-read' );
 
 /**
  * The code that runs during plugin activation.

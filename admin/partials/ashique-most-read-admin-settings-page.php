@@ -25,7 +25,7 @@ if (!defined('ABSPATH')) {
 ?>
 
 <div class="wrap">
-    <h1>Most read posts settings</h1>
+    <h1>Most read posts settings <a href="<?php echo esc_url( admin_url( 'options-general.php?page=most-read-posts-settings&view=log' ) );?>" class="font-size12">Watch posts log</a></h1>
     <form method="post" action="">
         <?php wp_nonce_field( 'most-read-post-number-settings-nonce', 'most_read_post_number_settings_nonce_field' ); ?>
         <table class="form-table">

@@ -121,7 +121,15 @@ class Ashique_Most_Read_Admin {
 	 * Admin settings page display
 	 */
 	public function ashique_admin_settings_page_display() {
-		include 'partials/ashique-most-read-admin-settings-page.php';
+		$view = isset( $_GET['view'] ) ? $_GET['view'] : '';
+		if ($view == '')
+			include 'partials/ashique-most-read-admin-settings-page.php';
+		else {
+			if ( ! class_exists('WP_List_Table') )
+				require_once ABSPATH . 'wp-admin/includes/class-wp-list-table.php';
+
+			include 'partials/ashique-most-read-admin-posts-log-page.php';
+		}
 	}
 
 	/**

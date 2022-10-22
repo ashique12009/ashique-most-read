@@ -2,3 +2,10 @@
  * All of the CSS for your admin-specific functionality should be
  * included in this file.
  */
+
+.float-right{
+    float: right;
+}
+.font-size12{
+    font-size: 12px;
+}
