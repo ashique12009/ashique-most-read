@@ -104,8 +104,8 @@ class Ashique_Most_Read_Admin {
 	 * Set settings menu
 	 */
 	public function ashique_admin_settings_option_menu() {
-		$page_title = 'Most read posts settings';
-		$menu_title = 'Most read posts settings';
+		$page_title = 'Most read posts';
+		$menu_title = 'Most read posts';
 		$capability = 'manage_options';
 		$menu_slug = 'most-read-posts-settings';
 		add_options_page(
