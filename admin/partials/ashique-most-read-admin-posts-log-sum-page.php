@@ -1,6 +1,6 @@
 <?php 
 
-class Post_log_table extends WP_List_Table
+class Post_log_sum_table extends WP_List_Table
 {
     // define $table_data property
     private $table_data;
@@ -11,7 +11,7 @@ class Post_log_table extends WP_List_Table
             'cb'            => '<input type="checkbox" />',
             'pid'           => __('Post ID', ASHIQUE_MOST_READ_POST_TEXTDOMAIN),
             'title'         => __('Post Title', ASHIQUE_MOST_READ_POST_TEXTDOMAIN),
-            'read_date'     => __('Read Date', ASHIQUE_MOST_READ_POST_TEXTDOMAIN),
+            // 'read_date'     => __('Read Date', ASHIQUE_MOST_READ_POST_TEXTDOMAIN),
             'read_counter'  => __('Read Count', ASHIQUE_MOST_READ_POST_TEXTDOMAIN)
         );
 
@@ -26,8 +26,8 @@ class Post_log_table extends WP_List_Table
                     return $item['post_id'];
                 case 'title':
                     return '<a href="'. get_the_permalink( $item['post_id'] ) .'">' . get_the_title( $item['post_id'] ) . '</a>';
-                case 'read_date':
-                    return $item[$column_name];
+                // case 'read_date':
+                //     return $item[$column_name];
                 case 'read_counter':
                     return $item[$column_name];
                 default:
@@ -76,7 +76,7 @@ class Post_log_table extends WP_List_Table
             FROM $table_name 
             WHERE 
             read_date >= DATE(NOW() - INTERVAL %d DAY)  
-            GROUP BY read_date, post_id 
+            GROUP BY post_id 
             ORDER BY read_counter DESC";
 
         $sql = $wpdb->prepare($table_sql, $most_read_days_number);
@@ -86,11 +86,11 @@ class Post_log_table extends WP_List_Table
 }
 
 // Creating an instance
-$table = new Post_log_table();
+$table = new Post_log_sum_table();
 
 $admin_settings_page_url = admin_url( 'options-general.php?page=most-read-posts-settings' );
 
-print '<div class="wrap"><h2>Posts Log Table (Date wise summation) <a href="' . $admin_settings_page_url . '" class="font-size12">Back to settings page</a></h2>';
+print '<div class="wrap"><h2>Posts Log Table (Post wise summation) <a href="' . $admin_settings_page_url . '" class="font-size12">Back to settings page</a></h2>';
 // Prepare table
 $table->prepare_items();
 // Display table

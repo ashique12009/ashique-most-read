@@ -129,6 +129,7 @@ class Ashique_Most_Read_Admin {
 				require_once ABSPATH . 'wp-admin/includes/class-wp-list-table.php';
 
 			include 'partials/ashique-most-read-admin-posts-log-page.php';
+			include 'partials/ashique-most-read-admin-posts-log-sum-page.php';
 		}
 	}
 
