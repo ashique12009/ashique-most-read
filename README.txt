@@ -35,8 +35,7 @@ More from settings, you can set how many days interval you need to see your post
 == Changelog ==
 
 = 1.0 =
-* A change since the previous version.
-* Another change.
+* Initial release
 
 == Upgrade Notice ==
 
